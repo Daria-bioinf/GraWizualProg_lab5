@@ -120,6 +120,31 @@ namespace GraWizualProg_lab5
             gameTimer.Tick += GameTimer_Tick;
             gameTimer.Start();
         }
+
+        void GameTimer_Tick(object sender, EventArgs e)
+        {
+            timeLeft--;
+
+            this.Text = "Time: " + timeLeft;
+            if (timeLeft <= 0)
+            {
+                gameTimer.Stop();
+                MessageBox.Show("Time's up! You found " + foundDydelfs + " out of " + totalDydelfs + " Dydelfs.");
+                DisableAllButtons();
+            }
+
+        }
+        
+        void DisableAllButtons()
+        {
+            foreach (Control c in this.Controls) {
+                if (c is Button)
+                {
+                    c.Enabled = false;
+                }
+
+            }
+        }
         private void FormGame_Load(object sender, EventArgs e)
         {
 
